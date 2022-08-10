@@ -1,0 +1,44 @@
+{
+  "name": "@istanbul/mysql",
+  "version": "0.0.1",
+  "description": "MySql package of istanbul framework",
+  "homepage": "https://github.com/istanbulnode/mysql#readme",
+  "keywords": [
+    "typescript",
+    "istanbul",
+    "istanbuljs",
+    "mysql"
+  ],
+  "author": "Sami Salih İBRAHİMBAŞ",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istanbulnode/mysql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/istanbulnode/mysql/issues"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "node --no-warnings --test",
+    "clear": "del-cli ./dist/*",
+    "build": "npm run clear && tsc",
+    "production": "npm run build && npm run test"
+  },
+  "dependencies": {
+    "@istanbul/app": "^0.0.29",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.7.4"
+  }
+}
