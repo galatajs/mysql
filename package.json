@@ -1,6 +1,6 @@
 {
   "name": "@istanbul/mysql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MySql package of istanbul framework",
   "homepage": "https://github.com/istanbulnode/mysql#readme",
   "keywords": [

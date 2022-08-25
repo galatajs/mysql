@@ -6,39 +6,39 @@ export class MySqlService implements OnAppFinished, OnModuleInstalled {
   connection!: Connection;
   private keepAliveInterval?: NodeJS.Timeout;
 
-  public onAppFinished(): void {
+  public onAppFinished = (): void => {
     this.clearKeepMySqlConnectionAlive();
     this.closeMySqlConnection();
-  }
+  };
 
-  public onModuleInstalled(params: {
+  public onModuleInstalled = async (params: {
     [MySqlEnum.CLIENT_OPTIONS]: ConnectionOptions | string;
-  }): void {
-    this.connectToMySql(params[MySqlEnum.CLIENT_OPTIONS]);
-  }
+  }): Promise<void> => {
+    await this.connectToMySql(params[MySqlEnum.CLIENT_OPTIONS]);
+  };
 
-  private async connectToMySql(
+  private connectToMySql = async (
     options: ConnectionOptions | string
-  ): Promise<void> {
+  ): Promise<void> => {
     // @ts-ignore
     this.connection = createConnection(options);
     this.connection.connect();
     this.keepMySqlConnectionAlive();
-  }
+  };
 
-  private keepMySqlConnectionAlive(): void {
+  private keepMySqlConnectionAlive = (): void => {
     this.keepAliveInterval = setInterval(() => {
       this.connection.ping();
     }, 5000);
-  }
+  };
 
-  private clearKeepMySqlConnectionAlive(): void {
+  private clearKeepMySqlConnectionAlive = (): void => {
     if (this.keepAliveInterval) {
       clearInterval(this.keepAliveInterval);
     }
-  }
+  };
 
-  private closeMySqlConnection(): void {
+  private closeMySqlConnection = (): void => {
     this.connection.destroy();
-  }
+  };
 }
