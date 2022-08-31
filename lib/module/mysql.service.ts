@@ -17,6 +17,18 @@ export class MySqlService implements OnAppFinished, OnModuleInstalled {
     await this.connectToMySql(params[MySqlEnum.CLIENT_OPTIONS]);
   };
 
+  public executeQuery = <T>(query: string): Promise<T> => {
+    return new Promise<T>((resolve, reject) => {
+      this.connection.query(query, (err: any, result: T) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  };
+
   private connectToMySql = async (
     options: ConnectionOptions | string
   ): Promise<void> => {
